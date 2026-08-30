@@ -50,6 +50,7 @@ var draw bool = true
 var draws int = 0
 var Game int = 0
 var Move int = 1
+var Verbose bool = false
 var Cells = [9]string{"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
 func reset() {
@@ -176,10 +177,17 @@ func statistics() {
 	fmt.Printf("Победы %s: %d\n", First, first)
 	fmt.Printf("Победы %s: %d\n", Second, second)
 	fmt.Printf("Ничьи: %d\n", draws)
+	if Verbose == true {
+		verbose()
+	}
 }
 
 func verbose() {
-
+	if end == true {
+		fmt.Println("Ходов в игре сделано:", Move-1)
+		fmt.Println("Процент победы игрока номер 1:", float64(first)/float64(Game)*100, "%")
+		fmt.Println("Процент победы игрока номер 2:", float64(second)/float64(Game)*100, "%")
+	}
 }
 
 func FirstPlayer() {
@@ -217,7 +225,7 @@ func main() {
 			color()
 		}
 		if len(os.Args) > 1 && arg == "--verbose" {
-			verbose()
+			Verbose = true
 		}
 		if len(os.Args) > 1 && arg == "--first" {
 			FirstPlayer()
@@ -357,6 +365,9 @@ func main() {
 		}
 		Winner()
 		if end == true {
+			if Verbose == true {
+				verbose()
+			}
 			fmt.Println("Хочешь сыграть еще раз? (y/n)")
 			input, err = reader.ReadString('\n')
 			if err != nil {
