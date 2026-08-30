@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func name() {
+func name() { // Функция для ввода имен игроков
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Введите имя игрока номер 1:")
 	name1, _ := reader.ReadString('\n')
@@ -54,12 +54,12 @@ var Move int = 1
 var Verbose bool = false
 var Cells = [9]string{"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
-func reset() {
+func reset() { // Функция для сброса игры
 	Cells = [9]string{"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 	Move = 1
 }
 
-func color() {
+func color() { // Функция для включения цветного вывода
 	First = "\033[91m" + First + "\033[0m"
 	Second = "\033[94m" + Second + "\033[0m"
 	win_First = "\033[32mПобедил\033[0m" + "\033[32m" + First + "\033[0m"
@@ -67,7 +67,7 @@ func color() {
 	error_color = "\033[31m"
 }
 
-func Winner() {
+func Winner() { // Функция для проверки победителя
 	if Cells[0] == First && Cells[1] == First && Cells[2] == First {
 		fmt.Println(win_First)
 		draw = false
@@ -190,7 +190,7 @@ func Winner() {
 	}
 }
 
-func New_Game() {
+func New_Game() { // Функция для начала новой игры
 	if Verbose == true {
 		verbose()
 	}
@@ -213,7 +213,7 @@ func New_Game() {
 	}
 }
 
-func statistics() {
+func statistics() { // Функция для вывода статистики
 	fmt.Println("Статистика:")
 	fmt.Printf("Всего игр: %d\n", Game)
 	fmt.Printf("Победы %s: %d\n", First, first)
@@ -224,7 +224,7 @@ func statistics() {
 	}
 }
 
-func verbose() {
+func verbose() { // Функция для вывода подробной статистики
 	if end == true {
 		fmt.Println("Ходов в игре сделано:", Move-1)
 		fmt.Println("Процент победы игрока номер 1:", float64(first)/float64(Game)*100, "%")
@@ -232,7 +232,7 @@ func verbose() {
 	}
 }
 
-func FirstPlayer() {
+func FirstPlayer() { // Функция для выбора первого игрока
 	fmt.Println("Выберите, кто будет ходить первым:")
 	fmt.Println("1. Игрок 1")
 	fmt.Println("2. Игрок 2")
@@ -249,7 +249,7 @@ func FirstPlayer() {
 	}
 }
 
-func help() {
+func help() { // Функция для вывода справки
 	fmt.Println("Использование:")
 	fmt.Println("--name : Ввести имена игроков")
 	fmt.Println("--color : Включить цветной вывод")
@@ -258,7 +258,7 @@ func help() {
 	fmt.Println("--first : Выбрать, кто будет ходить первым")
 }
 
-func main() {
+func main() { // Главная функция
 	for _, arg := range os.Args {
 		if len(os.Args) > 1 && arg == "--name" {
 			name()
@@ -272,13 +272,13 @@ func main() {
 		if len(os.Args) > 1 && arg == "--first" {
 			FirstPlayer()
 		}
-		if len(os.Args) > 1 && arg == "--help" {
+		if len(os.Args) > 1 && os.Args[1] == "--help" {
 			help()
 			os.Exit(0)
 		}
 	}
 	reader := bufio.NewReader(os.Stdin)
-	for {
+	for { // Основной цикл игры
 		fmt.Printf(" %s | %s | %s", Cells[0], Cells[1], Cells[2])
 		fmt.Println()
 		fmt.Println("---+---+---")
@@ -293,7 +293,7 @@ func main() {
 			continue
 		}
 		choice := strings.TrimSpace(input)
-		switch choice {
+		switch choice { // Обработка выбора игрока
 		case "1":
 			if Cells[0] == First || Cells[0] == Second {
 				fmt.Println(error_color + "Эта клетка уже занята" + "\033[0m")
