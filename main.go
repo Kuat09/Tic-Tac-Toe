@@ -11,8 +11,28 @@ func name() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Введите имя игрока номер 1:")
 	name1, _ := reader.ReadString('\n')
+	if strings.TrimSpace(name1) == "" {
+		fmt.Println("Имя игрока номер 1 не может быть пустым. Пожалуйста, введите имя.")
+		name()
+	}
+	if len([]rune(strings.TrimSpace(name1))) > 1 {
+		fmt.Println("Имя игрока номер 1 слишком длинное. Пожалуйста, введите имя не более 1 символа.")
+		name()
+	}
 	fmt.Println("Введите имя игрока номер 2:")
 	name2, _ := reader.ReadString('\n')
+	if strings.TrimSpace(name2) == "" {
+		fmt.Println("Имя игрока номер 2 не может быть пустым. Пожалуйста, введите имя.")
+		name()
+	}
+	if len([]rune(strings.TrimSpace(name2))) > 1 {
+		fmt.Println("Имя игрока номер 2 слишком длинное. Пожалуйста, введите имя не более 1 символа.")
+		name()
+	}
+	if strings.TrimSpace(name1) == strings.TrimSpace(name2) {
+		fmt.Println("Имена игроков не могут быть одинаковыми. Пожалуйста, введите разные имена.")
+		name()
+	}
 	fmt.Printf("Игрок 1: %s", name1)
 	fmt.Printf("Игрок 2: %s", name2)
 	First = strings.TrimSpace(name1)
