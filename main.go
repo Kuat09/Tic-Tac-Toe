@@ -15,16 +15,16 @@ func name() {
 	name2, _ := reader.ReadString('\n')
 	fmt.Printf("Игрок 1: %s", name1)
 	fmt.Printf("Игрок 2: %s", name2)
-	X = strings.TrimSpace(name1)
-	O = strings.TrimSpace(name2)
+	First = strings.TrimSpace(name1)
+	Second = strings.TrimSpace(name2)
 }
 
-var x int = 0
-var o int = 0
-var X string = "X"
-var O string = "O"
-var win_X string = "Победил X"
-var win_O string = "Победил O"
+var first int = 0
+var second int = 0
+var First string = "X"
+var Second string = "O"
+var win_First string = "Победил X"
+var win_Second string = "Победил O"
 var draw bool = true
 var draws int = 0
 var Game int = 0
@@ -37,92 +37,92 @@ func reset() {
 }
 
 func color() {
-	X = "\033[91mX\033[0m"
-	O = "\033[94mO\033[0m"
-	win_X = "\033[32mПобедил X\033[0m"
-	win_O = "\033[32mПобедил O\033[0m"
+	First = "\033[91mX\033[0m"
+	Second = "\033[94mO\033[0m"
+	win_First = "\033[32mПобедил X\033[0m"
+	win_Second = "\033[32mПобедил O\033[0m"
 }
 
 func Winner() {
-	if Cells[0] == X && Cells[1] == X && Cells[2] == X {
-		fmt.Println(win_X)
+	if Cells[0] == First && Cells[1] == First && Cells[2] == First {
+		fmt.Println(win_First)
 		draw = false
-		x++
+		first++
 		Game++
-	} else if Cells[3] == X && Cells[4] == X && Cells[5] == X {
-		fmt.Println(win_X)
+	} else if Cells[3] == First && Cells[4] == First && Cells[5] == First {
+		fmt.Println(win_First)
 		draw = false
-		x++
+		first++
 		Game++
-	} else if Cells[6] == X && Cells[7] == X && Cells[8] == X {
-		fmt.Println(win_X)
+	} else if Cells[6] == First && Cells[7] == First && Cells[8] == First {
+		fmt.Println(win_First)
 		draw = false
-		x++
+		first++
 		Game++
-	} else if Cells[0] == X && Cells[3] == X && Cells[6] == X {
-		fmt.Println(win_X)
+	} else if Cells[0] == First && Cells[3] == First && Cells[6] == First {
+		fmt.Println(win_First)
 		draw = false
-		x++
+		first++
 		Game++
-	} else if Cells[1] == X && Cells[4] == X && Cells[7] == X {
-		fmt.Println(win_X)
+	} else if Cells[1] == First && Cells[4] == First && Cells[7] == First {
+		fmt.Println(win_First)
 		draw = false
-		x++
+		first++
 		Game++
-	} else if Cells[2] == X && Cells[5] == X && Cells[8] == X {
-		fmt.Println(win_X)
+	} else if Cells[2] == First && Cells[5] == First && Cells[8] == First {
+		fmt.Println(win_First)
 		draw = false
-		x++
+		first++
 		Game++
-	} else if Cells[0] == X && Cells[4] == X && Cells[8] == X {
-		fmt.Println(win_X)
+	} else if Cells[0] == First && Cells[4] == First && Cells[8] == First {
+		fmt.Println(win_First)
 		draw = false
-		x++
+		first++
 		Game++
-	} else if Cells[2] == X && Cells[4] == X && Cells[6] == X {
-		fmt.Println(win_X)
+	} else if Cells[2] == First && Cells[4] == First && Cells[6] == First {
+		fmt.Println(win_First)
 		draw = false
-		x++
+		first++
 		Game++
-	} else if Cells[0] == O && Cells[1] == O && Cells[2] == O {
-		fmt.Println(win_O)
+	} else if Cells[0] == Second && Cells[1] == Second && Cells[2] == Second {
+		fmt.Println(win_Second)
 		draw = false
-		o++
+		second++
 		Game++
-	} else if Cells[3] == O && Cells[4] == O && Cells[5] == O {
-		fmt.Println(win_O)
+	} else if Cells[3] == Second && Cells[4] == Second && Cells[5] == Second {
+		fmt.Println(win_Second)
 		draw = false
-		o++
+		second++
 		Game++
-	} else if Cells[6] == O && Cells[7] == O && Cells[8] == O {
-		fmt.Println(win_O)
+	} else if Cells[6] == Second && Cells[7] == Second && Cells[8] == Second {
+		fmt.Println(win_Second)
 		draw = false
-		o++
+		second++
 		Game++
-	} else if Cells[0] == O && Cells[3] == O && Cells[6] == O {
-		fmt.Println(win_O)
+	} else if Cells[0] == Second && Cells[3] == Second && Cells[6] == Second {
+		fmt.Println(win_Second)
 		draw = false
-		o++
+		second++
 		Game++
-	} else if Cells[1] == O && Cells[4] == O && Cells[7] == O {
-		fmt.Println(win_O)
+	} else if Cells[1] == Second && Cells[4] == Second && Cells[7] == Second {
+		fmt.Println(win_Second)
 		draw = false
-		o++
+		second++
 		Game++
-	} else if Cells[2] == O && Cells[5] == O && Cells[8] == O {
-		fmt.Println(win_O)
+	} else if Cells[2] == Second && Cells[5] == Second && Cells[8] == Second {
+		fmt.Println(win_Second)
 		draw = false
-		o++
+		second++
 		Game++
-	} else if Cells[0] == O && Cells[4] == O && Cells[8] == O {
-		fmt.Println(win_O)
+	} else if Cells[0] == Second && Cells[4] == Second && Cells[8] == Second {
+		fmt.Println(win_Second)
 		draw = false
-		o++
+		second++
 		Game++
-	} else if Cells[2] == O && Cells[4] == O && Cells[6] == O {
-		fmt.Println(win_O)
+	} else if Cells[2] == Second && Cells[4] == Second && Cells[6] == Second {
+		fmt.Println(win_Second)
 		draw = false
-		o++
+		second++
 		Game++
 	}
 	if draw == true && Move > 9 {
@@ -135,15 +135,15 @@ func Winner() {
 func statistics() {
 	fmt.Println("Статистика:")
 	fmt.Printf("Всего игр: %d\n", Game)
-	fmt.Printf("Победы X: %d\n", x)
-	fmt.Printf("Победы O: %d\n", o)
+	fmt.Printf("Победы %s: %d\n", First, first)
+	fmt.Printf("Победы %s: %d\n", Second, second)
 	fmt.Printf("Ничьи: %d\n", draws)
 }
 
 func verbose() {
 	fmt.Println("Ход игры:")
-	fmt.Printf("Ход %d: Игрок %s\n", Move, X)
-	fmt.Printf("Ход %d: Игрок %s\n", Move, O)
+	fmt.Printf("Ход %d: Игрок %s\n", Move, First)
+	fmt.Printf("Ход %d: Игрок %s\n", Move, Second)
 }
 
 func help() {
@@ -184,111 +184,111 @@ func main() {
 		choice := strings.TrimSpace(input)
 		switch choice {
 		case "1":
-			if Cells[0] == X || Cells[0] == O {
+			if Cells[0] == First || Cells[0] == Second {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
 			if Move%2 == 1 {
-				Cells[0] = X
+				Cells[0] = First
 				Move++
 			} else {
-				Cells[0] = O
+				Cells[0] = Second
 				Move++
 			}
 		case "2":
-			if Cells[1] == X || Cells[1] == O {
+			if Cells[1] == First || Cells[1] == Second {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
 			if Move%2 == 1 {
-				Cells[1] = X
+				Cells[1] = First
 				Move++
 			} else {
-				Cells[1] = O
+				Cells[1] = Second
 				Move++
 			}
 		case "3":
-			if Cells[2] == X || Cells[2] == O {
+			if Cells[2] == First || Cells[2] == Second {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
 			if Move%2 == 1 {
-				Cells[2] = X
+				Cells[2] = First
 				Move++
 			} else {
-				Cells[2] = O
+				Cells[2] = Second
 				Move++
 			}
 		case "4":
-			if Cells[3] == X || Cells[3] == O {
+			if Cells[3] == First || Cells[3] == Second {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
 			if Move%2 == 1 {
-				Cells[3] = X
+				Cells[3] = First
 				Move++
 			} else {
-				Cells[3] = O
+				Cells[3] = Second
 				Move++
 			}
 		case "5":
-			if Cells[4] == X || Cells[4] == O {
+			if Cells[4] == First || Cells[4] == Second {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
 			if Move%2 == 1 {
-				Cells[4] = X
+				Cells[4] = First
 				Move++
 			} else {
-				Cells[4] = O
+				Cells[4] = Second
 				Move++
 			}
 		case "6":
-			if Cells[5] == X || Cells[5] == O {
+			if Cells[5] == First || Cells[5] == Second {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
 			if Move%2 == 1 {
-				Cells[5] = X
+				Cells[5] = First
 				Move++
 			} else {
-				Cells[5] = O
+				Cells[5] = Second
 				Move++
 			}
 		case "7":
-			if Cells[6] == X || Cells[6] == O {
+			if Cells[6] == First || Cells[6] == Second {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
 			if Move%2 == 1 {
-				Cells[6] = X
+				Cells[6] = First
 				Move++
 			} else {
-				Cells[6] = O
+				Cells[6] = Second
 				Move++
 			}
 		case "8":
-			if Cells[7] == X || Cells[7] == O {
+			if Cells[7] == First || Cells[7] == Second {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
 			if Move%2 == 1 {
-				Cells[7] = X
+				Cells[7] = First
 				Move++
 			} else {
-				Cells[7] = O
+				Cells[7] = Second
 				Move++
 			}
 		case "9":
-			if Cells[8] == X || Cells[8] == O {
+			if Cells[8] == First || Cells[8] == Second {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
 			if Move%2 == 1 {
-				Cells[8] = X
+				Cells[8] = First
 				Move++
 			} else {
-				Cells[8] = O
+				Cells[8] = Second
 				Move++
 			}
 		default:
