@@ -10,79 +10,71 @@ import (
 var x int = 0
 var o int = 0
 var draw int = 0
-var a int = 1
-var a1 string = "1"
-var a2 string = "2"
-var a3 string = "3"
-var a4 string = "4"
-var a5 string = "5"
-var a6 string = "6"
-var a7 string = "7"
-var a8 string = "8"
-var a9 string = "9"
+var Move int = 1
+var Cells = [9]string{"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
 func Winner() {
-	if a1 == "X" && a2 == "X" && a3 == "X" {
+	if Cells[0] == "X" && Cells[1] == "X" && Cells[2] == "X" {
 		fmt.Println("Победил X")
 		x++
 		os.Exit(0)
-	} else if a4 == "X" && a5 == "X" && a6 == "X" {
+	} else if Cells[3] == "X" && Cells[4] == "X" && Cells[5] == "X" {
 		fmt.Println("Победил X")
 		x++
 		os.Exit(0)
-	} else if a7 == "X" && a8 == "X" && a9 == "X" {
+	} else if Cells[6] == "X" && Cells[7] == "X" && Cells[8] == "X" {
 		fmt.Println("Победил X")
 		x++
 		os.Exit(0)
-	} else if a1 == "X" && a4 == "X" && a7 == "X" {
+	} else if Cells[0] == "X" && Cells[3] == "X" && Cells[6] == "X" {
 		fmt.Println("Победил X")
 		x++
 		os.Exit(0)
-	} else if a2 == "X" && a5 == "X" && a8 == "X" {
+	} else if Cells[1] == "X" && Cells[4] == "X" && Cells[7] == "X" {
 		fmt.Println("Победил X")
 		x++
 		os.Exit(0)
-	} else if a3 == "X" && a6 == "X" && a9 == "X" {
+	} else if Cells[2] == "X" && Cells[5] == "X" && Cells[8] == "X" {
 		fmt.Println("Победил X")
 		x++
 		os.Exit(0)
-	} else if a1 == "X" && a5 == "X" && a9 == "X" {
+	} else if Cells[0] == "X" && Cells[4] == "X" && Cells[8] == "X" {
 		fmt.Println("Победил X")
 		x++
 		os.Exit(0)
-	} else if a3 == "X" && a5 == "X" && a7 == "X" {
+	} else if Cells[2] == "X" && Cells[4] == "X" && Cells[6] == "X" {
 		fmt.Println("Победил X")
 		x++
 		os.Exit(0)
-	} else if a1 == "O" && a2 == "O" && a3 == "O" {
+	} else if Cells[0] == "O" && Cells[1] == "O" && Cells[2] == "O" {
 		fmt.Println("Победил O")
 		o++
 		os.Exit(0)
-	} else if a4 == "O" && a5 == "O" && a6 == "O" {
+	} else if Cells[3] == "O" && Cells[4] == "O" && Cells[5] == "O" {
 		fmt.Println("Победил O")
 		o++
 		os.Exit(0)
-	} else if a7 == "O" && a8 == "O" && a9 == "O" {
+	} else if Cells[6] == "O" && Cells[7] == "O" && Cells[8] == "O" {
 		fmt.Println("Победил O")
 		o++
 		os.Exit(0)
-	} else if a1 == "O" && a4 == "O" && a7 == "O" {
+	} else if Cells[0] == "O" && Cells[3] == "O" && Cells[6] == "O" {
 		fmt.Println("Победил O")
 		o++
 		os.Exit(0)
-	} else if a2 == "O" && a5 == "O" && a8 == "O" {
+	} else if Cells[1] == "O" && Cells[4] == "O" && Cells[7] == "O" {
 		fmt.Println("Победил O")
 		o++
 		os.Exit(0)
-	} else if a3 == "O" && a6 == "O" && a9 == "O" {
+	} else if Cells[2] == "O" && Cells[5] == "O" && Cells[8] == "O" {
 		fmt.Println("Победил O")
 		o++
 		os.Exit(0)
-	} else if a1 == "O" && a5 == "O" && a9 == "O" {
+	} else if Cells[0] == "O" && Cells[4] == "O" && Cells[8] == "O" {
 		fmt.Println("Победил O")
 		o++
 		os.Exit(0)
-	} else if a3 == "O" && a5 == "O" && a7 == "O" {
+	} else if Cells[2] == "O" && Cells[4] == "O" && Cells[6] == "O" {
 		fmt.Println("Победил O")
 		o++
 		os.Exit(0)
@@ -103,13 +95,13 @@ func statistics() {
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	for {
-		fmt.Printf(" %s | %s | %s", a1, a2, a3)
+		fmt.Printf(" %s | %s | %s", Cells[0], Cells[1], Cells[2])
 		fmt.Println()
 		fmt.Println("---+---+---")
-		fmt.Printf(" %s | %s | %s", a4, a5, a6)
+		fmt.Printf(" %s | %s | %s", Cells[3], Cells[4], Cells[5])
 		fmt.Println()
 		fmt.Println("---+---+---")
-		fmt.Printf(" %s | %s | %s", a7, a8, a9)
+		fmt.Printf(" %s | %s | %s", Cells[6], Cells[7], Cells[8])
 		fmt.Println()
 		input, err := reader.ReadString('\n')
 		if err != nil {
@@ -119,112 +111,112 @@ func main() {
 		choice := strings.TrimSpace(input)
 		switch choice {
 		case "1":
-			if a1 == "X" || a1 == "O" {
+			if Cells[0] == "X" || Cells[0] == "O" {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
-			if a%2 == 1 {
-				a1 = "X"
-				a++
+			if Move%2 == 1 {
+				Cells[0] = "X"
+				Move++
 			} else {
-				a1 = "O"
-				a++
+				Cells[0] = "O"
+				Move++
 			}
 		case "2":
-			if a2 == "X" || a2 == "O" {
+			if Cells[1] == "X" || Cells[1] == "O" {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
-			if a%2 == 1 {
-				a2 = "X"
-				a++
+			if Move%2 == 1 {
+				Cells[1] = "X"
+				Move++
 			} else {
-				a2 = "O"
-				a++
+				Cells[1] = "O"
+				Move++
 			}
 		case "3":
-			if a3 == "X" || a3 == "O" {
+			if Cells[2] == "X" || Cells[2] == "O" {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
-			if a%2 == 1 {
-				a3 = "X"
-				a++
+			if Move%2 == 1 {
+				Cells[2] = "X"
+				Move++
 			} else {
-				a3 = "O"
-				a++
+				Cells[2] = "O"
+				Move++
 			}
 		case "4":
-			if a4 == "X" || a4 == "O" {
+			if Cells[3] == "X" || Cells[3] == "O" {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
-			if a%2 == 1 {
-				a4 = "X"
-				a++
+			if Move%2 == 1 {
+				Cells[3] = "X"
+				Move++
 			} else {
-				a4 = "O"
-				a++
+				Cells[3] = "O"
+				Move++
 			}
 		case "5":
-			if a5 == "X" || a5 == "O" {
+			if Cells[4] == "X" || Cells[4] == "O" {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
-			if a%2 == 1 {
-				a5 = "X"
-				a++
+			if Move%2 == 1 {
+				Cells[4] = "X"
+				Move++
 			} else {
-				a5 = "O"
-				a++
+				Cells[4] = "O"
+				Move++
 			}
 		case "6":
-			if a6 == "X" || a6 == "O" {
+			if Cells[5] == "X" || Cells[5] == "O" {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
-			if a%2 == 1 {
-				a6 = "X"
-				a++
+			if Move%2 == 1 {
+				Cells[5] = "X"
+				Move++
 			} else {
-				a6 = "O"
-				a++
+				Cells[5] = "O"
+				Move++
 			}
 		case "7":
-			if a7 == "X" || a7 == "O" {
+			if Cells[6] == "X" || Cells[6] == "O" {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
-			if a%2 == 1 {
-				a7 = "X"
-				a++
+			if Move%2 == 1 {
+				Cells[6] = "X"
+				Move++
 			} else {
-				a7 = "O"
-				a++
+				Cells[6] = "O"
+				Move++
 			}
 		case "8":
-			if a8 == "X" || a8 == "O" {
+			if Cells[7] == "X" || Cells[7] == "O" {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
-			if a%2 == 1 {
-				a8 = "X"
-				a++
+			if Move%2 == 1 {
+				Cells[7] = "X"
+				Move++
 			} else {
-				a8 = "O"
-				a++
+				Cells[7] = "O"
+				Move++
 			}
 		case "9":
-			if a9 == "X" || a9 == "O" {
+			if Cells[8] == "X" || Cells[8] == "O" {
 				fmt.Println("Эта клетка уже занята")
 				continue
 			}
-			if a%2 == 1 {
-				a9 = "X"
-				a++
+			if Move%2 == 1 {
+				Cells[8] = "X"
+				Move++
 			} else {
-				a9 = "O"
-				a++
+				Cells[8] = "O"
+				Move++
 			}
 		default:
 			fmt.Println("Неверный ввод. Введите число от 1 до 9.")
