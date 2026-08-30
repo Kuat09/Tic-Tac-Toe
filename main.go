@@ -23,8 +23,9 @@ var first int = 0
 var second int = 0
 var First string = "X"
 var Second string = "O"
-var win_First string = "Победил X"
-var win_Second string = "Победил O"
+var win_First string = "Победил 1 игрок"
+var win_Second string = "Победил 2 игрок"
+var end bool = false
 var draw bool = true
 var draws int = 0
 var Game int = 0
@@ -37,96 +38,113 @@ func reset() {
 }
 
 func color() {
-	First = "\033[91mX\033[0m"
-	Second = "\033[94mO\033[0m"
-	win_First = "\033[32mПобедил X\033[0m"
-	win_Second = "\033[32mПобедил O\033[0m"
+	First = "\033[91m" + First + "\033[0m"
+	Second = "\033[94m" + Second + "\033[0m"
+	win_First = "\033[32mПобедил " + First + "\033[0m"
+	win_Second = "\033[32mПобедил " + Second + "\033[0m"
 }
 
 func Winner() {
 	if Cells[0] == First && Cells[1] == First && Cells[2] == First {
 		fmt.Println(win_First)
 		draw = false
+		end = true
 		first++
 		Game++
 	} else if Cells[3] == First && Cells[4] == First && Cells[5] == First {
 		fmt.Println(win_First)
 		draw = false
+		end = true
 		first++
 		Game++
 	} else if Cells[6] == First && Cells[7] == First && Cells[8] == First {
 		fmt.Println(win_First)
 		draw = false
+		end = true
 		first++
 		Game++
 	} else if Cells[0] == First && Cells[3] == First && Cells[6] == First {
 		fmt.Println(win_First)
 		draw = false
+		end = true
 		first++
 		Game++
 	} else if Cells[1] == First && Cells[4] == First && Cells[7] == First {
 		fmt.Println(win_First)
 		draw = false
+		end = true
 		first++
 		Game++
 	} else if Cells[2] == First && Cells[5] == First && Cells[8] == First {
 		fmt.Println(win_First)
 		draw = false
+		end = true
 		first++
 		Game++
 	} else if Cells[0] == First && Cells[4] == First && Cells[8] == First {
 		fmt.Println(win_First)
 		draw = false
+		end = true
 		first++
 		Game++
 	} else if Cells[2] == First && Cells[4] == First && Cells[6] == First {
 		fmt.Println(win_First)
 		draw = false
+		end = true
 		first++
 		Game++
 	} else if Cells[0] == Second && Cells[1] == Second && Cells[2] == Second {
 		fmt.Println(win_Second)
 		draw = false
+		end = true
 		second++
 		Game++
 	} else if Cells[3] == Second && Cells[4] == Second && Cells[5] == Second {
 		fmt.Println(win_Second)
 		draw = false
+		end = true
 		second++
 		Game++
 	} else if Cells[6] == Second && Cells[7] == Second && Cells[8] == Second {
 		fmt.Println(win_Second)
 		draw = false
+		end = true
 		second++
 		Game++
 	} else if Cells[0] == Second && Cells[3] == Second && Cells[6] == Second {
 		fmt.Println(win_Second)
 		draw = false
+		end = true
 		second++
 		Game++
 	} else if Cells[1] == Second && Cells[4] == Second && Cells[7] == Second {
 		fmt.Println(win_Second)
 		draw = false
+		end = true
 		second++
 		Game++
 	} else if Cells[2] == Second && Cells[5] == Second && Cells[8] == Second {
 		fmt.Println(win_Second)
 		draw = false
+		end = true
 		second++
 		Game++
 	} else if Cells[0] == Second && Cells[4] == Second && Cells[8] == Second {
 		fmt.Println(win_Second)
 		draw = false
+		end = true
 		second++
 		Game++
 	} else if Cells[2] == Second && Cells[4] == Second && Cells[6] == Second {
 		fmt.Println(win_Second)
 		draw = false
+		end = true
 		second++
 		Game++
 	}
 	if draw == true && Move > 9 {
 		fmt.Println("Ничья")
+		end = true
 		draws++
 		Game++
 	}
@@ -141,9 +159,24 @@ func statistics() {
 }
 
 func verbose() {
-	fmt.Println("Ход игры:")
-	fmt.Printf("Ход %d: Игрок %s\n", Move, First)
-	fmt.Printf("Ход %d: Игрок %s\n", Move, Second)
+
+}
+
+func FirstPlayer() {
+	fmt.Println("Выберите, кто будет ходить первым:")
+	fmt.Println("1. Игрок 1")
+	fmt.Println("2. Игрок 2")
+	reader := bufio.NewReader(os.Stdin)
+	input, _ := reader.ReadString('\n')
+	switch strings.TrimSpace(input) {
+	case "1":
+		fmt.Printf("Первым ходит игрок %s\n", First)
+	case "2":
+		fmt.Printf("Первым ходит игрок %s\n", Second)
+		First, Second = Second, First
+	default:
+		fmt.Println("Неверный ввод. Игрок 1 будет ходить первым по умолчанию.")
+	}
 }
 
 func help() {
@@ -151,6 +184,8 @@ func help() {
 	fmt.Println("--name : Ввести имена игроков")
 	fmt.Println("--color : Включить цветной вывод")
 	fmt.Println("--help : Показать справку")
+	fmt.Println("--verbose : Включить подробный вывод (не реализовано)")
+	fmt.Println("--first : Выбрать, кто будет ходить первым")
 }
 
 func main() {
@@ -160,6 +195,12 @@ func main() {
 		}
 		if len(os.Args) > 1 && arg == "--color" {
 			color()
+		}
+		if len(os.Args) > 1 && arg == "--verbose" {
+			verbose()
+		}
+		if len(os.Args) > 1 && arg == "--first" {
+			FirstPlayer()
 		}
 		if len(os.Args) > 1 && arg == "--help" {
 			help()
@@ -295,7 +336,7 @@ func main() {
 			fmt.Println("Неверный ввод. Введите число от 1 до 9.")
 		}
 		Winner()
-		if Move > 9 {
+		if end == true {
 			fmt.Println("Хочешь сыграть еще раз? (y/n)")
 			input, err = reader.ReadString('\n')
 			if err != nil {
