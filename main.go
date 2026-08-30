@@ -7,6 +7,18 @@ import (
 	"strings"
 )
 
+func name() {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("Введите имя игрока номер 1:")
+	name1, _ := reader.ReadString('\n')
+	fmt.Println("Введите имя игрока номер 2:")
+	name2, _ := reader.ReadString('\n')
+	fmt.Printf("Игрок 1: %s", name1)
+	fmt.Printf("Игрок 2: %s", name2)
+	X = strings.TrimSpace(name1)
+	O = strings.TrimSpace(name2)
+}
+
 var x int = 0
 var o int = 0
 var X string = "X"
@@ -15,6 +27,7 @@ var win_X string = "Победил X"
 var win_O string = "Победил O"
 var draw bool = true
 var draws int = 0
+var Game int = 0
 var Move int = 1
 var Cells = [9]string{"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
@@ -24,12 +37,10 @@ func reset() {
 }
 
 func color() {
-	if len(os.Args) > 1 && os.Args[1] == "--color" {
-		X = "\033[91mX\033[0m"
-		O = "\033[94mO\033[0m"
-		win_X = "\033[32mПобедил X\033[0m"
-		win_O = "\033[32mПобедил O\033[0m"
-	}
+	X = "\033[91mX\033[0m"
+	O = "\033[94mO\033[0m"
+	win_X = "\033[32mПобедил X\033[0m"
+	win_O = "\033[32mПобедил O\033[0m"
 }
 
 func Winner() {
@@ -37,81 +48,124 @@ func Winner() {
 		fmt.Println(win_X)
 		draw = false
 		x++
+		Game++
 	} else if Cells[3] == X && Cells[4] == X && Cells[5] == X {
 		fmt.Println(win_X)
 		draw = false
 		x++
+		Game++
 	} else if Cells[6] == X && Cells[7] == X && Cells[8] == X {
 		fmt.Println(win_X)
 		draw = false
 		x++
+		Game++
 	} else if Cells[0] == X && Cells[3] == X && Cells[6] == X {
 		fmt.Println(win_X)
 		draw = false
 		x++
+		Game++
 	} else if Cells[1] == X && Cells[4] == X && Cells[7] == X {
 		fmt.Println(win_X)
 		draw = false
 		x++
+		Game++
 	} else if Cells[2] == X && Cells[5] == X && Cells[8] == X {
 		fmt.Println(win_X)
 		draw = false
 		x++
+		Game++
 	} else if Cells[0] == X && Cells[4] == X && Cells[8] == X {
 		fmt.Println(win_X)
 		draw = false
 		x++
+		Game++
 	} else if Cells[2] == X && Cells[4] == X && Cells[6] == X {
 		fmt.Println(win_X)
 		draw = false
 		x++
+		Game++
 	} else if Cells[0] == O && Cells[1] == O && Cells[2] == O {
 		fmt.Println(win_O)
 		draw = false
 		o++
+		Game++
 	} else if Cells[3] == O && Cells[4] == O && Cells[5] == O {
 		fmt.Println(win_O)
 		draw = false
 		o++
+		Game++
 	} else if Cells[6] == O && Cells[7] == O && Cells[8] == O {
 		fmt.Println(win_O)
 		draw = false
 		o++
+		Game++
 	} else if Cells[0] == O && Cells[3] == O && Cells[6] == O {
 		fmt.Println(win_O)
 		draw = false
 		o++
+		Game++
 	} else if Cells[1] == O && Cells[4] == O && Cells[7] == O {
 		fmt.Println(win_O)
 		draw = false
 		o++
-	}else if Cells[2] == O && Cells[5] == O && Cells[8] == O {
+		Game++
+	} else if Cells[2] == O && Cells[5] == O && Cells[8] == O {
 		fmt.Println(win_O)
 		draw = false
 		o++
+		Game++
 	} else if Cells[0] == O && Cells[4] == O && Cells[8] == O {
 		fmt.Println(win_O)
 		draw = false
 		o++
+		Game++
 	} else if Cells[2] == O && Cells[4] == O && Cells[6] == O {
 		fmt.Println(win_O)
 		draw = false
 		o++
+		Game++
 	}
 	if draw == true && Move > 9 {
 		fmt.Println("Ничья")
 		draws++
+		Game++
 	}
 }
 
 func statistics() {
 	fmt.Println("Статистика:")
+	fmt.Printf("Всего игр: %d\n", Game)
 	fmt.Printf("Победы X: %d\n", x)
 	fmt.Printf("Победы O: %d\n", o)
 	fmt.Printf("Ничьи: %d\n", draws)
 }
 
+func verbose() {
+	fmt.Println("Ход игры:")
+	fmt.Printf("Ход %d: Игрок %s\n", Move, X)
+	fmt.Printf("Ход %d: Игрок %s\n", Move, O)
+}
+
+func help() {
+	fmt.Println("Использование:")
+	fmt.Println("--name : Ввести имена игроков")
+	fmt.Println("--color : Включить цветной вывод")
+	fmt.Println("--help : Показать справку")
+}
+
 func main() {
+	for _, arg := range os.Args {
+		if len(os.Args) > 1 && arg == "--name" {
+			name()
+		}
+		if len(os.Args) > 1 && arg == "--color" {
+			color()
+		}
+		if len(os.Args) > 1 && arg == "--help" {
+			help()
+			os.Exit(0)
+		}
+	}
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		fmt.Printf(" %s | %s | %s", Cells[0], Cells[1], Cells[2])
