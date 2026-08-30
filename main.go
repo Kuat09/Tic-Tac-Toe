@@ -7,6 +7,9 @@ import (
 	"strings"
 )
 
+var x int = 0
+var o int = 0
+var draw int = 0
 var a int = 1
 var a1 string = "1"
 var a2 string = "2"
@@ -17,6 +20,85 @@ var a6 string = "6"
 var a7 string = "7"
 var a8 string = "8"
 var a9 string = "9"
+
+func Winner() {
+	if a1 == "X" && a2 == "X" && a3 == "X" {
+		fmt.Println("Победил X")
+		x++
+		os.Exit(0)
+	} else if a4 == "X" && a5 == "X" && a6 == "X" {
+		fmt.Println("Победил X")
+		x++
+		os.Exit(0)
+	} else if a7 == "X" && a8 == "X" && a9 == "X" {
+		fmt.Println("Победил X")
+		x++
+		os.Exit(0)
+	} else if a1 == "X" && a4 == "X" && a7 == "X" {
+		fmt.Println("Победил X")
+		x++
+		os.Exit(0)
+	} else if a2 == "X" && a5 == "X" && a8 == "X" {
+		fmt.Println("Победил X")
+		x++
+		os.Exit(0)
+	} else if a3 == "X" && a6 == "X" && a9 == "X" {
+		fmt.Println("Победил X")
+		x++
+		os.Exit(0)
+	} else if a1 == "X" && a5 == "X" && a9 == "X" {
+		fmt.Println("Победил X")
+		x++
+		os.Exit(0)
+	} else if a3 == "X" && a5 == "X" && a7 == "X" {
+		fmt.Println("Победил X")
+		x++
+		os.Exit(0)
+	} else if a1 == "O" && a2 == "O" && a3 == "O" {
+		fmt.Println("Победил O")
+		o++
+		os.Exit(0)
+	} else if a4 == "O" && a5 == "O" && a6 == "O" {
+		fmt.Println("Победил O")
+		o++
+		os.Exit(0)
+	} else if a7 == "O" && a8 == "O" && a9 == "O" {
+		fmt.Println("Победил O")
+		o++
+		os.Exit(0)
+	} else if a1 == "O" && a4 == "O" && a7 == "O" {
+		fmt.Println("Победил O")
+		o++
+		os.Exit(0)
+	} else if a2 == "O" && a5 == "O" && a8 == "O" {
+		fmt.Println("Победил O")
+		o++
+		os.Exit(0)
+	} else if a3 == "O" && a6 == "O" && a9 == "O" {
+		fmt.Println("Победил O")
+		o++
+		os.Exit(0)
+	} else if a1 == "O" && a5 == "O" && a9 == "O" {
+		fmt.Println("Победил O")
+		o++
+		os.Exit(0)
+	} else if a3 == "O" && a5 == "O" && a7 == "O" {
+		fmt.Println("Победил O")
+		o++
+		os.Exit(0)
+	} else {
+		fmt.Println("Ничья")
+		draw++
+		os.Exit(0)
+	}
+}
+
+func statistics() {
+	fmt.Println("Статистика:")
+	fmt.Printf("Победы X: %d\n", x)
+	fmt.Printf("Победы O: %d\n", o)
+	fmt.Printf("Ничьи: %d\n", draw)
+}
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
@@ -145,7 +227,8 @@ func main() {
 				a++
 			}
 		default:
-			return
+			fmt.Println("Неверный ввод. Введите число от 1 до 9.")
 		}
+		Winner()
 	}
 }
