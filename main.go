@@ -12,25 +12,25 @@ func name() {
 	fmt.Println("Введите имя игрока номер 1:")
 	name1, _ := reader.ReadString('\n')
 	if strings.TrimSpace(name1) == "" {
-		fmt.Println("Имя игрока номер 1 не может быть пустым. Пожалуйста, введите имя.")
+		fmt.Println(error_color + "Имя игрока номер 1 не может быть пустым. Пожалуйста, введите имя." + "\033[0m")
 		name()
 	}
 	if len([]rune(strings.TrimSpace(name1))) > 1 {
-		fmt.Println("Имя игрока номер 1 слишком длинное. Пожалуйста, введите имя не более 1 символа.")
+		fmt.Println(error_color + "Имя игрока номер 1 слишком длинное. Пожалуйста, введите имя не более 1 символа." + "\033[0m")
 		name()
 	}
 	fmt.Println("Введите имя игрока номер 2:")
 	name2, _ := reader.ReadString('\n')
 	if strings.TrimSpace(name2) == "" {
-		fmt.Println("Имя игрока номер 2 не может быть пустым. Пожалуйста, введите имя.")
+		fmt.Println(error_color + "Имя игрока номер 2 не может быть пустым. Пожалуйста, введите имя." + "\033[0m")
 		name()
 	}
 	if len([]rune(strings.TrimSpace(name2))) > 1 {
-		fmt.Println("Имя игрока номер 2 слишком длинное. Пожалуйста, введите имя не более 1 символа.")
+		fmt.Println(error_color + "Имя игрока номер 2 слишком длинное. Пожалуйста, введите имя не более 1 символа." + "\033[0m")
 		name()
 	}
 	if strings.TrimSpace(name1) == strings.TrimSpace(name2) {
-		fmt.Println("Имена игроков не могут быть одинаковыми. Пожалуйста, введите разные имена.")
+		fmt.Println(error_color + "Имена игроков не могут быть одинаковыми. Пожалуйста, введите разные имена." + "\033[0m")
 		name()
 	}
 	fmt.Printf("Игрок 1: %s", name1)
@@ -39,6 +39,7 @@ func name() {
 	Second = strings.TrimSpace(name2)
 }
 
+var error_color string = "\033[0m"
 var first int = 0
 var second int = 0
 var First string = "X"
@@ -61,8 +62,9 @@ func reset() {
 func color() {
 	First = "\033[91m" + First + "\033[0m"
 	Second = "\033[94m" + Second + "\033[0m"
-	win_First = "\033[32mПобедил " + First + "\033[0m"
-	win_Second = "\033[32mПобедил " + Second + "\033[0m"
+	win_First = "\033[32mПобедил\033[0m" + "\033[32m" + First + "\033[0m"
+	win_Second = "\033[32mПобедил\033[0m " + "\033[32m" + Second + "\033[0m"
+	error_color = "\033[31m"
 }
 
 func Winner() {
@@ -72,102 +74,142 @@ func Winner() {
 		end = true
 		first++
 		Game++
+		New_Game()
 	} else if Cells[3] == First && Cells[4] == First && Cells[5] == First {
 		fmt.Println(win_First)
 		draw = false
 		end = true
 		first++
 		Game++
+		New_Game()
 	} else if Cells[6] == First && Cells[7] == First && Cells[8] == First {
 		fmt.Println(win_First)
 		draw = false
 		end = true
 		first++
 		Game++
+		New_Game()
 	} else if Cells[0] == First && Cells[3] == First && Cells[6] == First {
 		fmt.Println(win_First)
 		draw = false
 		end = true
 		first++
 		Game++
+		New_Game()
 	} else if Cells[1] == First && Cells[4] == First && Cells[7] == First {
 		fmt.Println(win_First)
 		draw = false
 		end = true
 		first++
 		Game++
+		New_Game()
 	} else if Cells[2] == First && Cells[5] == First && Cells[8] == First {
 		fmt.Println(win_First)
 		draw = false
 		end = true
 		first++
 		Game++
+		New_Game()
 	} else if Cells[0] == First && Cells[4] == First && Cells[8] == First {
 		fmt.Println(win_First)
 		draw = false
 		end = true
 		first++
 		Game++
+		New_Game()
 	} else if Cells[2] == First && Cells[4] == First && Cells[6] == First {
 		fmt.Println(win_First)
 		draw = false
 		end = true
 		first++
 		Game++
+		New_Game()
 	} else if Cells[0] == Second && Cells[1] == Second && Cells[2] == Second {
 		fmt.Println(win_Second)
 		draw = false
 		end = true
 		second++
 		Game++
+		New_Game()
 	} else if Cells[3] == Second && Cells[4] == Second && Cells[5] == Second {
 		fmt.Println(win_Second)
 		draw = false
 		end = true
 		second++
 		Game++
+		New_Game()
 	} else if Cells[6] == Second && Cells[7] == Second && Cells[8] == Second {
 		fmt.Println(win_Second)
 		draw = false
 		end = true
 		second++
 		Game++
+		New_Game()
 	} else if Cells[0] == Second && Cells[3] == Second && Cells[6] == Second {
 		fmt.Println(win_Second)
 		draw = false
 		end = true
 		second++
 		Game++
+		New_Game()
 	} else if Cells[1] == Second && Cells[4] == Second && Cells[7] == Second {
 		fmt.Println(win_Second)
 		draw = false
 		end = true
 		second++
 		Game++
+		New_Game()
 	} else if Cells[2] == Second && Cells[5] == Second && Cells[8] == Second {
 		fmt.Println(win_Second)
 		draw = false
 		end = true
 		second++
 		Game++
+		New_Game()
 	} else if Cells[0] == Second && Cells[4] == Second && Cells[8] == Second {
 		fmt.Println(win_Second)
 		draw = false
 		end = true
 		second++
 		Game++
+		New_Game()
 	} else if Cells[2] == Second && Cells[4] == Second && Cells[6] == Second {
 		fmt.Println(win_Second)
 		draw = false
 		end = true
 		second++
 		Game++
+		New_Game()
 	}
 	if draw == true && Move > 9 {
 		fmt.Println("Ничья")
 		end = true
 		draws++
 		Game++
+		New_Game()
+	}
+}
+
+func New_Game() {
+	if Verbose == true {
+		verbose()
+	}
+	end = false
+	fmt.Println("Хочешь сыграть еще раз? (y/n)")
+	reader := bufio.NewReader(os.Stdin)
+	input, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println("Ошибка ввода:", err)
+	}
+	switch strings.TrimSpace(input) {
+	case "y":
+		reset()
+	case "n":
+		statistics()
+		os.Exit(0)
+	default:
+		fmt.Println(error_color + "Неверный ввод. Введите y или n." + "\033[0m")
+		New_Game()
 	}
 }
 
@@ -203,7 +245,7 @@ func FirstPlayer() {
 		fmt.Printf("Первым ходит игрок %s\n", Second)
 		First, Second = Second, First
 	default:
-		fmt.Println("Неверный ввод. Игрок 1 будет ходить первым по умолчанию.")
+		fmt.Println(error_color + "Неверный ввод. Игрок 1 будет ходить первым по умолчанию." + "\033[0m")
 	}
 }
 
@@ -254,7 +296,7 @@ func main() {
 		switch choice {
 		case "1":
 			if Cells[0] == First || Cells[0] == Second {
-				fmt.Println("Эта клетка уже занята")
+				fmt.Println(error_color + "Эта клетка уже занята" + "\033[0m")
 				continue
 			}
 			if Move%2 == 1 {
@@ -266,7 +308,7 @@ func main() {
 			}
 		case "2":
 			if Cells[1] == First || Cells[1] == Second {
-				fmt.Println("Эта клетка уже занята")
+				fmt.Println(error_color + "Эта клетка уже занята" + "\033[0m")
 				continue
 			}
 			if Move%2 == 1 {
@@ -278,7 +320,7 @@ func main() {
 			}
 		case "3":
 			if Cells[2] == First || Cells[2] == Second {
-				fmt.Println("Эта клетка уже занята")
+				fmt.Println(error_color + "Эта клетка уже занята" + "\033[0m")
 				continue
 			}
 			if Move%2 == 1 {
@@ -290,7 +332,7 @@ func main() {
 			}
 		case "4":
 			if Cells[3] == First || Cells[3] == Second {
-				fmt.Println("Эта клетка уже занята")
+				fmt.Println(error_color + "Эта клетка уже занята" + "\033[0m")
 				continue
 			}
 			if Move%2 == 1 {
@@ -302,7 +344,7 @@ func main() {
 			}
 		case "5":
 			if Cells[4] == First || Cells[4] == Second {
-				fmt.Println("Эта клетка уже занята")
+				fmt.Println(error_color + "Эта клетка уже занята" + "\033[0m")
 				continue
 			}
 			if Move%2 == 1 {
@@ -314,7 +356,7 @@ func main() {
 			}
 		case "6":
 			if Cells[5] == First || Cells[5] == Second {
-				fmt.Println("Эта клетка уже занята")
+				fmt.Println(error_color + "Эта клетка уже занята" + "\033[0m")
 				continue
 			}
 			if Move%2 == 1 {
@@ -326,7 +368,7 @@ func main() {
 			}
 		case "7":
 			if Cells[6] == First || Cells[6] == Second {
-				fmt.Println("Эта клетка уже занята")
+				fmt.Println(error_color + "Эта клетка уже занята" + "\033[0m")
 				continue
 			}
 			if Move%2 == 1 {
@@ -338,7 +380,7 @@ func main() {
 			}
 		case "8":
 			if Cells[7] == First || Cells[7] == Second {
-				fmt.Println("Эта клетка уже занята")
+				fmt.Println(error_color + "Эта клетка уже занята" + "\033[0m")
 				continue
 			}
 			if Move%2 == 1 {
@@ -350,7 +392,7 @@ func main() {
 			}
 		case "9":
 			if Cells[8] == First || Cells[8] == Second {
-				fmt.Println("Эта клетка уже занята")
+				fmt.Println(error_color + "Эта клетка уже занята" + "\033[0m")
 				continue
 			}
 			if Move%2 == 1 {
@@ -361,28 +403,8 @@ func main() {
 				Move++
 			}
 		default:
-			fmt.Println("Неверный ввод. Введите число от 1 до 9.")
+			fmt.Println(error_color + "Неверный ввод. Введите число от 1 до 9." + "\033[0m")
 		}
 		Winner()
-		if end == true {
-			if Verbose == true {
-				verbose()
-			}
-			fmt.Println("Хочешь сыграть еще раз? (y/n)")
-			input, err = reader.ReadString('\n')
-			if err != nil {
-				fmt.Println("Ошибка ввода:", err)
-				continue
-			}
-			switch strings.TrimSpace(input) {
-			case "y":
-				reset()
-			case "n":
-				statistics()
-				os.Exit(0)
-			default:
-				fmt.Println("Неверный ввод. Введите 'y' или 'n'.")
-			}
-		}
 	}
 }
